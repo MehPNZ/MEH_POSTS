@@ -1,0 +1,22 @@
+    <div class="card-body">
+      <section class="card-text">
+        <p class="font-weight-bold">
+          <b>Author: </b>  
+            <% if post.user.avatar.attached? %>
+              <%= image_tag post.user.avatar, class: 'border border-2 rounded-circle', width: '30px', height: '30px'%> 
+            <% end %>
+            <%= post.user.name %>
+        </p>
+
+        <div class="mt-2 mb-3">
+          <%= sanitize comment.body%>
+        </div>
+
+        <small><time>
+          <%= comment.created_at.strftime('%Y-%m-%d %H:%M') %>
+        </time></small>
+      </section>
+
+        <%= link_to 'Edit', edit_post_comment_path(post, comment), class: 'btn btn-secondary btn-sm'%> 
+        <%= button_to "Delete", post_comment_path(post, comment), class: 'btn btn-danger btn-sm', method: :delete %>
+    </div>

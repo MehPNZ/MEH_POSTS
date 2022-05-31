@@ -1,0 +1,27 @@
+<% main_menu %>
+
+<h1 class="mb-4">History</h1>
+
+<%= pagination(@pagy)%>
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Type</th>
+      <th scope="col">Status</th>
+      <th scope="col">Title POST</th>
+      <th scope="col">ID Object</th>
+      <th scope="col"> Created at</th>
+      <th scope="col"> User Email</th>
+      <th scope="col"> User Name</th>
+      <th scope="col"> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @logs %>
+  </tbody>
+</table>
+
+<%= pagination(@pagy)%>
+
+<%= link_to "Back", root_path, class: 'btn btn-danger' %>

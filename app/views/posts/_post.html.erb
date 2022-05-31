@@ -1,0 +1,24 @@
+<div class="card-body">
+  <h2><%=link_to post.title , post_path(post.id)%></h2>
+
+  <section class="card-text">
+  <p class="font-weight-bold">
+    <b>Author: </b>  
+      <% if post.user.avatar.attached? %>
+        <%= image_tag post.user.avatar, class: 'border border-2 rounded-circle', width: '50px', height: '50px'%> 
+      <% end %>
+      <%= post.user.name %>
+  </p>
+
+  <p class="my-2">
+    <%=sanitize post.body%>
+  </p>
+
+  <section class="card-text">
+  <time >
+    <%= post.created_at.strftime('%Y-%m-%d %H:%M')%>
+  </time>
+  </section>
+    <%= link_to "Edit", edit_post_path(post), class: 'btn btn-secondary btn-sm'%>
+    <%= button_to "Delete", post_path(post), class: 'btn btn-danger btn-sm', method: :delete %>
+</div>

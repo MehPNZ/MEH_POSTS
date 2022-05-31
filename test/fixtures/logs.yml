@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: MyString
+  log_obj: one
+  log_obj_type: Log obj
+  user: one
+
+two:
+  status: MyString
+  log_obj: two
+  log_obj_type: Log obj
+  user: two
