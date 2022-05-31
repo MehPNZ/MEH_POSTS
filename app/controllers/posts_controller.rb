@@ -2,7 +2,6 @@
 
 class PostsController < ApplicationController
   before_action :find_post, only: %i[show destroy edit update]
-  after_action :user_mailer, only: %i[create destroy update]
 
   def new
     @post = Post.new
@@ -12,7 +11,8 @@ class PostsController < ApplicationController
     @post = current_user.posts.build post_params
     if @post.save
       record_log(@post, 'Create')
-      redirect_to posts_path
+      user_mailer
+      redirect_to posts_path, notice: "New post created!"
     else
       render :new
     end
@@ -32,6 +32,7 @@ class PostsController < ApplicationController
   def update
     if @post.update post_params
       record_log(@post, 'Updated')
+      user_mailer
       redirect_to post_path(@post)
     else
       render :edit
@@ -41,6 +42,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     record_log(@post, 'Destroy')
+    user_mailer
     redirect_to root_path
   end
 
