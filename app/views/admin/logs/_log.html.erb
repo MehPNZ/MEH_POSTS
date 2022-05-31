@@ -1,0 +1,12 @@
+<div>
+  <tr>
+    <th scope="row"><%=log.id %></th>
+    <td><%= log.log_obj_type %></td>
+    <td><%= log.status %></td>
+    <td><%= log.title %></td>
+    <td><%= log.log_obj_id %></td>
+    <td><%= log.created_at.strftime('%Y-%m-%d %H:%M') %></td>
+    <td><%= log.user.email %></td>
+    <td><%= log.user.name %></td>
+  </tr>
+</div>
