@@ -12,7 +12,7 @@ class PostsController < ApplicationController
     if @post.save
       record_log(@post, 'Create')
       user_mailer
-      redirect_to posts_path, notice: "New post created!"
+      redirect_to posts_path, notice: 'New post created!'
     else
       render :new
     end

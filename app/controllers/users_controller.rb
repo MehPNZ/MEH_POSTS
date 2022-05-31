@@ -2,7 +2,7 @@
 
 class UsersController < ApplicationController
   before_action :require_no_current_user, only: %i[new create]
-  before_action :require_current_user, only: %i[edit update] 
+  before_action :require_current_user, only: %i[edit update]
   before_action :set_user!, only: %i[edit update]
 
   def new
@@ -19,8 +19,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @user.update user_params
@@ -37,7 +36,6 @@ class UsersController < ApplicationController
   end
 
   def set_user!
-  @user = User.includes([:avatar_attachment]).find(params[:id])
+    @user = User.includes([:avatar_attachment]).find(params[:id])
   end
-  
 end

@@ -8,12 +8,7 @@ Rails.application.routes.draw do
   resource :logs, only: %i[show]
 
   resources :posts do
-    resources :logs, only: %i[new]
-    resources :comments
-  end
-
-  resources :comments do
-    resources :logs, only: %i[new]
+    resources :comments, except: %i[new show]
   end
 
   root 'posts#index'

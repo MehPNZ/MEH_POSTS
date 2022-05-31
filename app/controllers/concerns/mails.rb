@@ -8,11 +8,11 @@ module Mails
 
     def user_mailer
       if params[:action] == 'destroy'
-      UserMailer.with(user: current_user, action: params[:action],
-                      type: params[:controller], post: @post).send_email.deliver_now
+        UserMailer.with(user: current_user, action: params[:action],
+                        type: params[:controller], post: @post).send_email.deliver_now
       else
-      UserMailer.with(user: current_user, action: params[:action],
-                   type: params[:controller], post: @post).send_email.deliver_later
+        UserMailer.with(user: current_user, action: params[:action],
+                        type: params[:controller], post: @post).send_email.deliver_later
       end
     end
   end
