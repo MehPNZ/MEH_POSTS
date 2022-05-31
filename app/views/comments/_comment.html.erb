@@ -2,10 +2,10 @@
       <section class="card-text">
         <p class="font-weight-bold">
           <b>Author: </b>  
-            <% if post.user.avatar.attached? %>
-              <%= image_tag post.user.avatar, class: 'border border-2 rounded-circle', width: '30px', height: '30px'%> 
+            <% if comment.user.avatar.attached? %>
+              <%= image_tag comment.user.avatar, class: 'border border-2 rounded-circle', width: '30px', height: '30px'%> 
             <% end %>
-            <%= post.user.name %>
+            <%= comment.user.name %>
         </p>
 
         <div class="mt-2 mb-3">
