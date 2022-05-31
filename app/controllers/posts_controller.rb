@@ -5,17 +5,21 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    unless current_user.present?
+    flash[:alert] = "You must be registered to create a post"
+    redirect_to root_path
+    end
   end
 
   def create
-    @post = current_user.posts.build post_params
-    if @post.save
-      record_log(@post, 'Create')
-      user_mailer
-      redirect_to posts_path, notice: 'New post created!'
-    else
-      render :new
-    end
+      @post = current_user.posts.build post_params
+      if @post.save
+        record_log(@post, 'Create')
+        user_mailer
+        redirect_to posts_path, notice: 'New post created!'
+      else
+        render :new
+      end
   end
 
   def index
