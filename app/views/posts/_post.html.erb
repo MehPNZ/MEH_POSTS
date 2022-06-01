@@ -1,24 +1,30 @@
-<div class="card-body">
+<div class="card-header mb-3">
   <h2><%=link_to post.title , post_path(post.id)%></h2>
 
   <section class="card-text">
-  <p class="font-weight-bold">
-    <b>Author: </b>  
-      <% if post.user.avatar.attached? %>
-        <%= image_tag post.user.avatar, class: 'border border-2 rounded-circle', width: '50px', height: '50px'%> 
+    <div class="data-toggle="tooltip" data-placement="top" title="About User"">
+      <%= link_to user_path(post.user.id),class: 'nav-link px-2 text-black' do%>
+        <% if post.user.avatar.attached? %>
+          <%= image_tag post.user.avatar, class: 'border border-2 rounded-circle', width: '50px', height: '50px'%> 
+        <% end %>
+        <%= post.user.name %> 
       <% end %>
-      <%= post.user.name %>
-  </p>
+    </div>
+  </section>
 
+
+  <section class="card-text">
   <p class="my-2">
     <%=sanitize post.body%>
   </p>
+  </section>
 
-  <section class="card-text">
+  <section class="card-text mb-2">
   <time >
     <%= post.created_at.strftime('%Y-%m-%d %H:%M')%>
   </time>
   </section>
+
   <%if policy(post).edit? %>
     <%= link_to "Edit", edit_post_path(post), class: 'btn btn-secondary btn-sm'%>
   <% end %>  

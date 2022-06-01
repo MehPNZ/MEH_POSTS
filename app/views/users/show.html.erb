@@ -1,0 +1,48 @@
+<% main_menu %>
+
+<%= render 'shared/errors', object: @user %>
+
+ <div class="text-center">
+  <% if @user.avatar.attached? %>
+    <%= image_tag @user.avatar, class: 'border border-2 rounded-circle', width: '200px', height: '200px'%> 
+  <% end %>
+  </div>
+
+  <table class="table table-reflow table-striped table-bordered">
+  <thead>
+    <tr>
+    </tr>
+  </thead>
+  <tbody>
+
+  <tr>
+    <th scope="row"><%= 'Name' %></th>
+    <td><%= @user.name %></td>
+  </tr>
+  <tr>
+    <th scope="row"><%= 'E-mail' %></th>
+    <td><%= @user.email %></td>
+  </tr>
+   <tr>
+    <th scope="row"><%= 'Role' %></th>
+    <td><%= @user.role %></td>
+  </tr>
+  <tr>
+    <th scope="row"><%= 'Created at' %></th>
+    <td><%= @user.created_at.strftime('%Y-%m-%d %H:%M') %></td>
+  </tr>
+    <tr>
+    <th scope="row"><%= 'Posts created' %></th>
+    <td><%= Post.all.where(user_id: @user.id).count %></td>
+  </tr>
+    <tr>
+    <th scope="row"><%= 'Сomments left' %></th>
+    <td><%= Comment.all.where(user_id: @user.id).count %></td>
+  </tr>
+  </tbody>
+</table>
+
+
+
+  <%= link_to "Back", posts_path, class: 'btn btn-danger'  %>
+

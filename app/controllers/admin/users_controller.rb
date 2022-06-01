@@ -21,6 +21,7 @@ module Admin
     end
 
     def destroy
+      @user.avatar.purge
       @user.destroy
       redirect_to admin_users_path, notice: 'User destroy!'
     end

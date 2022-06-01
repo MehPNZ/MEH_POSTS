@@ -1,12 +1,14 @@
     <div class="card-body">
-      <section class="card-text">
-        <p class="font-weight-bold">
-          <b>Author: </b>  
+      <section class="card-header">
+       <div class="data-toggle="tooltip" data-placement="top" title="About User"">
+           <%= link_to user_path(post.user.id),class: 'nav-link px-2 text-black' do%>
             <% if comment.user.avatar.attached? %>
               <%= image_tag comment.user.avatar, class: 'border border-2 rounded-circle', width: '30px', height: '30px'%> 
             <% end %>
             <%= comment.user.name %>
-        </p>
+          <% end %>
+       </div>
+      </section>
 
         <div class="mt-2 mb-3">
           <%= sanitize comment.body%>

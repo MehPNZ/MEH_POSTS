@@ -49,11 +49,9 @@
   </div>
 </div>
 
-<% if @user.new_record?%>
-  <%= f.submit "Update", class: 'btn btn-primary'  %>
-<% else %>
-  <%= f.submit "Registration", class: 'btn btn-primary'  %>
-<% end %>
+  
+  <%= f.submit (@user.new_record? ? "Registration" : "Update"), class: 'btn btn-primary'  %>
+
 
   <%= link_to "Cancel", posts_path, class: 'btn btn-danger'  %>
 <% end %>
