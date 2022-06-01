@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Comment < ApplicationRecord
+  include Authorship
   include LogObj
   belongs_to :post
   belongs_to :user

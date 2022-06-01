@@ -49,7 +49,7 @@
   </div>
 </div>
 
-<% if current_user.present?%>
+<% if @user.new_record?%>
   <%= f.submit "Update", class: 'btn btn-primary'  %>
 <% else %>
   <%= f.submit "Registration", class: 'btn btn-primary'  %>

@@ -16,7 +16,10 @@
           <%= comment.created_at.strftime('%Y-%m-%d %H:%M') %>
         </time></small>
       </section>
-
-        <%= link_to 'Edit', edit_post_comment_path(post, comment), class: 'btn btn-secondary btn-sm'%> 
-        <%= button_to "Delete", post_comment_path(post, comment), class: 'btn btn-danger btn-sm', method: :delete %>
+        <%if policy(comment).edit? %>
+         <%= link_to 'Edit', edit_post_comment_path(post, comment), class: 'btn btn-secondary btn-sm'%> 
+        <% end %>
+        <%if policy(comment).destroy? %>
+          <%= button_to "Delete", post_comment_path(post, comment), class: 'btn btn-danger btn-sm', method: :delete %>
+        <% end %>
     </div>

@@ -13,4 +13,12 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   validates :role, presence: true
+
+  def guest?
+    false
+  end
+
+  def author?(obj)
+    obj.user == self
+  end
 end

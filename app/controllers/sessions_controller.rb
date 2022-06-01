@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       sign_in user
       redirect_to root_path
     else
-      flash[:alert] = "Incorrect email and/or password!"
+      flash[:alert] = 'Incorrect email and/or password!'
       redirect_to new_sessions_path
     end
   end

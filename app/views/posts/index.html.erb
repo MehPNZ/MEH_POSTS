@@ -3,7 +3,9 @@
 <h1 class="mb-3 mt-3"> Posts </h1>
 
 <div class="mb-3">
-  <%= link_to "New Post", new_post_path, class: 'btn btn-primary btn-lg'%>
+  <%if policy(:post).new? %>
+    <%= link_to "New Post", new_post_path, class: 'btn btn-primary btn-lg'%>
+  <% end %>
 </div>
 
 <%= pagination(@pagy)%>

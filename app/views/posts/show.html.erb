@@ -4,9 +4,11 @@
 <%= render @post%>
 </article>
 
-<h3>Write your comment</h3>
+<% if policy(:comment).new?%>
+  <h3>Write your comment</h3>
 
-<%= render 'comments/form'%>
+  <%= render 'comments/form'%>
+<% end %>
 
 <h3 class="mt-5">Comments</h3>
 

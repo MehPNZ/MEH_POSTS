@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
   rescue_from(ActiveRecord::RecordNotFound, with: :notfound)
+  include Authorization
   include Pagy::Backend
   include Authentication
   include Mails

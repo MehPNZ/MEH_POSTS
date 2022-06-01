@@ -1,25 +1,24 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
+  # before_action :require_current_user, except: %i[show index]
   before_action :find_post, only: %i[show destroy edit update]
+  before_action :authorize_post!
+  after_action :verify_authorized
 
   def new
     @post = Post.new
-    unless current_user.present?
-    flash[:alert] = "You must be registered to create a post"
-    redirect_to root_path
-    end
   end
 
   def create
-      @post = current_user.posts.build post_params
-      if @post.save
-        record_log(@post, 'Create')
-        user_mailer
-        redirect_to posts_path, notice: 'New post created!'
-      else
-        render :new
-      end
+    @post = current_user.posts.build post_params
+    if @post.save
+      record_log(@post, 'Create')
+      user_mailer
+      redirect_to posts_path, notice: 'New post created!'
+    else
+      render :new
+    end
   end
 
   def index
@@ -58,5 +57,9 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :body)
+  end
+
+  def authorize_post!
+    authorize(@post || Post)
   end
 end

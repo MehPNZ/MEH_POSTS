@@ -4,8 +4,11 @@
       <nav class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><%= link_to "Posts", root_path, class: 'nav-link px-2 text-white'%></li>
-          <li><%= link_to "History", admin_logs_path, class: 'nav-link px-2 text-white'%></li>
-          <li><%= link_to "Users", admin_users_path, class: 'nav-link px-2 text-white'%></li>
+        
+          <% if policy([:admin, :user]).index? %>
+            <li><%= link_to "History", admin_logs_path, class: 'nav-link px-2 text-white'%></li>
+            <li><%= link_to "Users", admin_users_path, class: 'nav-link px-2 text-white'%></li>
+          <% end %>
         </ul>
         
         <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">

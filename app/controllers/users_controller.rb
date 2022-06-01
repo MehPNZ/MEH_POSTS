@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   before_action :require_no_current_user, only: %i[new create]
   before_action :require_current_user, only: %i[edit update]
   before_action :set_user!, only: %i[edit update]
+  before_action :authorize_user!
+  after_action :verify_authorized
 
   def new
     @user = User.new
@@ -29,6 +31,12 @@ class UsersController < ApplicationController
     end
   end
 
+  # def show #todo
+  # end
+
+  # def destroy # todo
+  # end
+
   private
 
   def user_params
@@ -37,5 +45,9 @@ class UsersController < ApplicationController
 
   def set_user!
     @user = User.includes([:avatar_attachment]).find(params[:id])
+  end
+
+  def authorize_user!
+    authorize(@user || User)
   end
 end

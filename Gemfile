@@ -48,6 +48,7 @@ gem 'cssbundling-rails'
 gem 'image_processing', '>= 1.2'
 gem 'letter_opener'
 gem 'pagy', '~> 5.10'
+gem 'pundit'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
