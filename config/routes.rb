@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get '/users/:id/clear/', to: 'users#clear_avatar', as: 'clear_avatar'
+
   resource :sessions, only: %i[new create destroy]
 
   resources :users

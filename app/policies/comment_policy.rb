@@ -6,11 +6,11 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def update?
-    user.admin_role? || user.moderator_role? || user.author?(record) && !user.banned_role?
+    user.admin_role? || user.moderator_role? || (user.author?(record) && !user.banned_role?)
   end
 
   def destroy?
-    user.admin_role? || user.author?(record) && !user.banned_role?
+    user.admin_role? || (user.author?(record) && !user.banned_role?)
   end
 
   def index?

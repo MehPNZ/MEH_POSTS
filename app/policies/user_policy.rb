@@ -5,6 +5,10 @@ class UserPolicy < ApplicationPolicy
     user.guest?
   end
 
+  def clear_avatar?
+    !user.guest?
+  end
+
   def update?
     record == user
   end

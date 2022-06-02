@@ -5,8 +5,10 @@
  <div class="text-center">
   <% if @user.avatar.attached? %>
     <%= image_tag @user.avatar, class: 'border border-2 rounded-circle', width: '200px', height: '200px'%> 
+  <% else %>
+    <%= image_tag "foto/no-foto.jpg", class: 'border border-2 rounded-circle', width: '200px', height: '200px'%> 
   <% end %>
-  </div>
+</div>
 
   <table class="table table-reflow table-striped table-bordered">
   <thead>
@@ -44,5 +46,5 @@
 
 
 
-  <%= link_to "Back", posts_path, class: 'btn btn-danger'  %>
+  <%= link_to "Back", :back, class: 'btn btn-danger'  %>
 

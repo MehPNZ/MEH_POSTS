@@ -1,23 +1,30 @@
 <%= render 'shared/errors', object: @user %>
 
+  <div class="ms-5 mb-3">
+    <% if @user.avatar.attached?%>
+        <%= image_tag @user.avatar, class: 'border border-2 rounded-circle', width: '200px', height: '200px'%> 
+    <% else %>
+      <%= image_tag "foto/no-foto.jpg", class: 'border border-2 rounded-circle', width: '200px', height: '200px'%> 
+    <% end %>
+  </div>
+
+
 <%= form_with model: @user do |f|%>
 
 <div class="mb-3 row">  
   <div class='col-sm-1 col-form-label text-end'>
     <%= f.label :email %>
   </div>
-  <div class='col-sm-10'>
+  <div class='col-sm-5'>
     <%= f.email_field :email, placeholder: 'E-mail',  class: 'form-control'%>
   </div>
 </div>
 
 <div class="mb-3 row">
-  
-  
   <div class='col-sm-1 col-form-label text-end'>
     <%= f.label :name %>
   </div>
-  <div class='col-sm-10'>
+  <div class='col-sm-5'>
     <%= f.text_field :name, placeholder: 'Name', class: 'form-control'%>
   </div>
 </div>
@@ -26,7 +33,7 @@
   <div class='col-sm-1 col-form-label text-end'>
     <%= f.label :password %>
   </div>
-  <div class='col-sm-10'>
+  <div class='col-sm-5'>
     <%= f.password_field :password, class: 'form-control'%>
   </div>
 </div>
@@ -35,7 +42,7 @@
   <div class='col-sm-1 col-form-label text-end'>
     <%= f.label :password_confirmation %>
   </div>
-  <div class='col-sm-10'>
+  <div class='col-sm-5'>
     <%= f.password_field :password_confirmation, class: 'form-control'%>
   </div>
 </div>
@@ -44,14 +51,18 @@
   <div class='col-sm-1 col-form-label text-end'>
     <%= f.label :avatar %>
   </div>
-  <div class='col-sm-10'>
-    <%= f.file_field :avatar%>
+  <div class='col-sm-5'>
+    <%= f.file_field :avatar, class: 'form-control' %>
   </div>
 </div>
 
-  
-  <%= f.submit (@user.new_record? ? "Registration" : "Update"), class: 'btn btn-primary'  %>
+  <div class='mb-4'>
+    <% unless @user.new_record?%>
+      <%= link_to "Clear avatar", clear_avatar_path, class: 'btn btn-danger btn-sm'%>
+    <% end %>
 
-
-  <%= link_to "Cancel", posts_path, class: 'btn btn-danger'  %>
+    <%= f.submit (@user.new_record? ? "Registration" : "Update"), class: 'btn btn-primary'  %>
+    <%= link_to "Cancel", posts_path, class: 'btn btn-danger'  %>
+  </div>
 <% end %>
+
